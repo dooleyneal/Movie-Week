@@ -6,8 +6,10 @@
 </head>
 <body>
 <form action="voteForBestMovie" method="GET">
+    <a href="/">Home</a>
     <p>Movie Title: <input type="text" name="movieTitle" /></p>
     <p><input type="submit" value="Submit" /></p>
+    <p th:text="'Your favorite movie is: ' + ${BestMovieVote}" />
 </form>
 </body>
 </html>
