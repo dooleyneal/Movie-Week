@@ -1,6 +1,7 @@
 package com.javaunit3.springmvc;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -20,6 +21,14 @@ public class MovieEntity {
     @Column(name = "genre")
     private String genre;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "movie_id")
+    private List<VoteEntity> votes;
+
+    public void addVote(VoteEntity vote) {
+        this.votes.add(vote);
+    }
+
     public Integer getId() {
         return id;
     }
@@ -32,13 +41,6 @@ public class MovieEntity {
         this.title = title;
     }
 
-    public String getMaturity_rating() {
-        return maturityRating;
-    }
-
-    public void setMaturity_rating(String maturity_rating) {
-        this.maturityRating = maturity_rating;
-    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -50,5 +52,21 @@ public class MovieEntity {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getMaturityRating() {
+        return maturityRating;
+    }
+
+    public void setMaturityRating(String maturityRating) {
+        this.maturityRating = maturityRating;
+    }
+
+    public List<VoteEntity> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<VoteEntity> votes) {
+        this.votes = votes;
     }
 }
